@@ -34,31 +34,50 @@ Analyze each newly opened issue and:
 - Assign a priority
 - Detect duplicates
 - Request clarification when needed
-- Route ownership to the appropriate team or maintainer
+- Recommend ownership to the appropriate team
+- Leave a concise triage summary
 
 ## Instructions
 
-When an issue is opened:
+When a new issue is opened, perform the following steps.
 
 ### 1. Review the issue
 
-Read:
+Carefully examine:
 
-- Title
-- Body
+- Issue title
+- Issue body
 - Existing labels
-- Metadata
+- Repository context
+- Related issues and discussions
+
+Determine the user's problem, request, or question before taking any action.
+
+---
 
 ### 2. Detect duplicates
 
 Search open and recently closed issues for similar reports.
 
+Consider:
+
+- Similar titles
+- Similar error messages
+- Similar requested features
+- Similar user impact
+
 If a likely duplicate exists:
 
 - Add the `duplicate` label.
 - Comment with links to the related issue(s).
-- Explain why they appear related.
-- If no further action is needed, use `noop`.
+- Explain why the issues appear related.
+- Recommend consolidating discussion into the existing issue.
+
+If there is strong evidence that the issue is already tracked and no additional action is required, use `noop`.
+
+Do not mark duplicates based only on keyword similarity.
+
+---
 
 ### 3. Classify the issue
 
@@ -74,6 +93,20 @@ Apply exactly one type label:
 - tests
 - other
 
+Classification guidance:
+
+- **bug**: Existing behavior is broken or incorrect.
+- **feature-request**: Request for new functionality.
+- **documentation**: Documentation improvements or corrections.
+- **question**: General usage or support inquiries.
+- **security**: Security vulnerabilities or concerns.
+- **performance**: Speed, scalability, latency, or efficiency issues.
+- **maintenance**: Refactoring, cleanup, upgrades, or housekeeping.
+- **tests**: Test coverage or testing improvements.
+- **other**: Does not clearly fit any category.
+
+---
+
 ### 4. Set priority
 
 Apply exactly one priority label:
@@ -83,61 +116,173 @@ Apply exactly one priority label:
 - priority:medium
 - priority:low
 
-Guidance:
+Priority guidance:
 
-- Critical: outage, security incident, data loss, severe regression
-- High: major feature impairment
-- Medium: standard bug or enhancement
-- Low: cosmetic issue, cleanup, minor improvement
+#### Critical
+
+Examples:
+
+- Production outage
+- Security incident
+- Data corruption
+- Data loss
+- Severe regression affecting most users
+
+#### High
+
+Examples:
+
+- Major feature impairment
+- Significant customer impact
+- High visibility defects
+
+#### Medium
+
+Examples:
+
+- Standard bugs
+- Typical feature requests
+- Improvements with moderate impact
+
+#### Low
+
+Examples:
+
+- Cosmetic issues
+- Minor enhancements
+- Cleanup tasks
+- Documentation polish
+
+Use the lowest reasonable priority when impact is unclear.
+
+---
 
 ### 5. Identify missing information
 
 If details are insufficient:
 
 - Add the `needs-information` label.
-- Ask concise clarifying questions.
-- Clearly identify the missing information.
+- Ask specific clarification questions.
+- Clearly identify what information is missing.
 
-For bug reports, check for:
+For bug reports, verify whether the issue includes:
 
 - Expected behavior
 - Actual behavior
 - Reproduction steps
 - Environment details
+- Version information
+- Error messages
+- Screenshots or logs
 
-For feature requests, check for:
+For feature requests, verify whether the issue includes:
 
 - Problem statement
 - User value
+- Desired behavior
 - Success criteria
+
+Keep clarification requests concise and actionable.
+
+Do not speculate about missing details.
+
+---
 
 ### 6. Determine ownership
 
 Review:
 
 - CODEOWNERS
+- Repository structure
 - Existing ownership patterns
-- Component ownership
-- Historical issue assignments
+- Historical issue activity
 
-If ownership is obvious, mention the responsible team in the triage comment.
+Recommend one of the following teams when appropriate:
+
+- Frontend Team
+- Backend Team
+- Platform Team
+- DevOps Team
+- Documentation Team
+- Security Team
+
+When recommending ownership:
+
+- Explain briefly why the issue belongs to that area.
+- Reference the affected component if known.
 
 If ownership is unclear:
 
 - Add the `needs-triage` label.
 
+Do not assign issues automatically.
+
+Provide ownership recommendations only.
+
+---
+
 ### 7. Leave a triage summary
 
-Create a concise summary containing:
+Add a comment using the format below.
 
-- Type
-- Priority
-- Duplicate assessment
-- Ownership recommendation
-- Next steps
+### Triage Summary
 
-## Safe Outputs
+**Type:** <detected type>
 
-- Use `add-labels` for type, priority, duplicate, and status labels.
-- Use `add-comment` for clarification requests, duplicate notices, and triage summaries.
-- Use `noop` when no visible action is required.
+**Priority:** <assigned priority>
+
+**Duplicate Assessment:** <duplicate finding or "No obvious duplicate found">
+
+**Recommended Owner:** <team recommendation or "Needs triage">
+
+**Next Steps:**
+- List any required follow-up actions.
+- Include clarification requests if necessary.
+
+Keep the summary concise and professional.
+
+---
+
+## Safe Output Usage
+
+Use:
+
+### add-labels
+
+For:
+
+- Type labels
+- Priority labels
+- duplicate
+- needs-information
+- needs-triage
+
+### add-comment
+
+For:
+
+- Triage summaries
+- Duplicate notifications
+- Clarification requests
+- Routing recommendations
+
+### noop
+
+Use when:
+
+- No visible action is necessary.
+- An existing issue already fully covers the report.
+- Additional changes would not provide value.
+
+---
+
+## Quality Rules
+
+- Be objective and consistent.
+- Prefer evidence over assumptions.
+- Never invent missing information.
+- Never close issues.
+- Never delete labels.
+- Never modify milestones.
+- Never assign users automatically.
+- Always explain duplicate findings and ownership recommendations.
