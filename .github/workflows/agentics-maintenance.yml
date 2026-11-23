@@ -37,7 +37,7 @@
 #
 name: Agentic Maintenance
 
-on:
+off:
   schedule:
     - cron: "37 0 * * *"  # Daily (based on minimum expires: 30 days)
   workflow_dispatch:
